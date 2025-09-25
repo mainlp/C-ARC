@@ -1,0 +1,24 @@
+train:
+  translation:
+    direction: ["x", "y"]
+    step_size: [1]
+  mirror:
+    direction: ["x", "y"]
+  rotation:
+    rotation_type: [0, 8]
+  set_color:
+    new_color: [1, 2]
+  grow:
+    direction: ["-x", "-y"]     
+test:
+  translation:
+    direction: ["x", "y"]
+    step_size: [1]
+  mirror:
+    direction: ["x", "y"]
+  rotation:
+    rotation_type: [0, 8]
+  set_color:
+    new_color: [1, 2]
+  grow:
+    direction: ["-x", "-y"]

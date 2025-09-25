@@ -1,0 +1,45 @@
+program: scripts/train_mlc.py
+project: MLC
+name: mlc_systematicity_experiment
+metric:
+  name: val/val_query_acc
+  goal: maximize
+
+method: bayes
+parameters:
+  lr:
+    values: [1.e-2, 1.e-3, 1.e-4]
+  lr_end_factor:
+    values: [0.01, 0.05]
+  batch_hold_update:
+    values: [1, 2]
+  dropout:
+    values: [0.0, 0.1, 0.2]
+  p_noise:
+    values: [0.0, 0.001, 0.01]
+  ff_mult:
+    values: [4, 6]
+  zero_token_weight:
+    values: [0.2, 0.4, 1.0]
+  nlayers_encoder:
+    values: [2, 3, 4]
+  nlayers_decoder:
+    values: [2, 3, 4]
+
+command:
+  - python3
+  - ${program}
+  - --sweep
+  - --nepochs
+  - 40
+  - --batch_size
+  - 128
+  - --data_dir
+  - "data/split_seed_1860"
+  - --data_file_name
+  - "systematicity_seed_1860"
+  - --checkpoint_dir
+  - "models/split_seed_1860"
+  - --wandb_dir
+  - "wandb"
+  - ${args}
